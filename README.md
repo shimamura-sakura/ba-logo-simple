@@ -4,6 +4,8 @@ A logo generator using canvas & REAL vanilla js.
 
 Used assets and magic numbers from [nulla2011/Bluearchive-logo](https://github.com/nulla2011/Bluearchive-logo)
 
+Online on [shimamura-sakura.github.io](https://shimamura-sakura.github.io/ba-logo/)
+
 ## Used fonts
 
 - RoGSanSrfStd-Bd.otf
