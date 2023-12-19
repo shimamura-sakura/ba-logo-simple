@@ -7,7 +7,7 @@ const BALogo = {
     fRoG: new FontFace('ba-rog', 'url(assets/RoGSanSrfStd-Bd.otf)').load(),
     fGlo: new FontFace('ba-glo', 'url(assets/GlowSansSC-Normal-Heavy.otf)').load(),
     meas: new OffscreenCanvas(0, 0).getContext('2d'),
-    padd: 10,
+    padd: 0,
     size: 84,
     colorL: '#128AFA',
     colorR: '#2B2B2B',
