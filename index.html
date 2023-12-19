@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<title>Blue Archive Logo</title>
+
+<body>
+    <h1 style="font-family: ba-rog, ba-glo">BA Logo</h1>
+    <canvas id="canvas" width="1280" height="720"></canvas><br />
+    <script src="ba-logo.js"></script>
+    <script>
+        const cvs = document.getElementById('canvas');
+        const ctx = cvs.getContext('2d');
+        BALogo.load.then(function () {
+            const p = baPlanDraw('Blue', 'Archive', BALogo.font, 84, 0.4, 0, 0);
+            cvs.width = 100 + p.w;
+            cvs.height = 0 + p.h;
+            p.draw(ctx, 100, 0, BALogo.colorL, BALogo.colorR);
+        });
+    </script>
+</body>
+
+</html>
