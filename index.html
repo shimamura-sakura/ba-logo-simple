@@ -17,7 +17,9 @@
     <label>大<input id="size" autocomplete="off" value="84"></label>
     <label>背<input id="back" autocomplete="off" value="#ffffff"></label>
     <label>字<input id="font" autocomplete="off" value=""></label>
-    <br /><br /><canvas id="canvas"></canvas>
+    <label>环X<input id="adjX" autocomplete="off" value="0" size="3"></label>
+    <label>环Y<input id="adjY" autocomplete="off" value="0" size="3"></label>
+    <div>右键或长按图片可保存</div><canvas id="canvas"></canvas>
     <script src="ba-logo.js"></script>
     <script>
         const cvs = document.getElementById('canvas');
@@ -29,6 +31,8 @@
         const e_size = document.getElementById('size');
         const e_back = document.getElementById('back');
         const e_font = document.getElementById('font');
+        const e_adjX = document.getElementById('adjX');
+        const e_adjY = document.getElementById('adjY');
         function baLogoUpdate() {
             const txtL = e_txtL.value;
             const clrL = e_clrL.value;
@@ -37,7 +41,9 @@
             const size = Math.min(500, Math.max(20, parseFloat(e_size.value) || 84));
             const back = e_back.value || null;
             const font = e_font.value || BALogo.font;
-            const p = baPlanDraw(txtL, txtR, font, size, 0.4, 0, 0);
+            const adjX = Math.min(500, Math.max(-500, parseFloat(e_adjX.value) || 0));
+            const adjY = Math.min(500, Math.max(-500, parseFloat(e_adjY.value) || 0));
+            const p = baPlanDraw(txtL, txtR, font, size, 0.4, adjX, adjY);
             cvs.width = p.w;
             cvs.height = p.h;
             ctx.clearRect(0, 0, p.w, p.h);
@@ -46,8 +52,10 @@
         }
         BALogo.load.then(() => {
             baLogoUpdate();
-            for (const e of [e_txtL, e_clrL, e_txtR, e_clrR, e_size, e_back, e_font])
-                e.oninput = baLogoUpdate;
+            for (const e of [
+                e_txtL, e_clrL, e_txtR, e_clrR, e_size,
+                e_back, e_font, e_adjX, e_adjY]
+            ) e.oninput = baLogoUpdate;
         });
     </script>
 </body>

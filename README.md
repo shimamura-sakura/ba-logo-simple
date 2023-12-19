@@ -9,6 +9,8 @@ Used assets and magic numbers from [nulla2011/Bluearchive-logo](https://github.c
 - RoGSanSrfStd-Bd.otf
 - GlowSansSC-Normal-Heavy.otf
 
+Put them in the `assets` folder.
+
 ## Usage
 
 ```html
