@@ -12,7 +12,7 @@ Used assets and magic numbers from [nulla2011/Bluearchive-logo](https://github.c
 ## Usage
 
 ```html
-<canvas id="canvas" width="1280" height="720"></canvas><br />
+<canvas id="canvas" width="1280" height="720"></canvas>
 <script src="ba-logo.js"></script>
 <script>
   const cvs = document.getElementById("canvas");
