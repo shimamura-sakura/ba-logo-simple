@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<style>
+    @font-face {
+        font-family: ba-rog;
+        src: url('assets/RoGSanSrfStd-Bd.otf') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: ba-glo;
+        src: url("assets/GlowSansSC-Normal-Heavy.otf") format("woff2");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+</style>
+
+<body>
+    <canvas id="canvas" width="1600" height="800"></canvas>
+    <script>
+        'use strict';
+        const cvs = document.getElementById('canvas');
+        const ctx = cvs.getContext('2d');
+
+        function baLoadImage(src) {
+            const img = new Image();
+            img.promise = new Promise((res, rej) => {
+                img.onload = () => res(img);
+                img.onerror = er => rej(er);
+                img.src = src;
+            });
+            return img;
+        };
+
+        const size = 168;
+        const font = `${size}px ba-rog, ba-glo`;
+        const halo = baLoadImage('assets/halo.png');
+        const crux = baLoadImage('assets/cross.png');
+        const fLdr = document.fonts.load(font);
+
+        Promise.all([halo.promise, crux.promise, fLdr]).then(async () => {
+
+            const mod = size / 84 * 0.5;
+            const refX = 500;
+            const refY = 500;
+
+            ctx.font = '20px monospace';
+            ctx.textAlign = 'end';
+            ctx.textBaseline = 'top';
+            ctx.fillStyle = 'red';
+            ctx.fillText('Origin', refX, refY);
+            ctx.textBaseline = 'alphabetic';
+
+            ctx.font = font;
+
+            const metricsL = ctx.measureText('Blue');
+            const metricsR = ctx.measureText('Archive');
+            const metricsT = ctx.measureText('Blue Archive');
+
+            ctx.lineWidth = 2;
+
+            ctx.fillStyle = 'red';
+            ctx.fillRect(refX, refY, 10, 10);
+            ctx.fillStyle = 'green';
+            ctx.fillRect(refX, refY - metricsT.fontBoundingBoxAscent, 10, 10);
+
+            ctx.setTransform(1, 0, -0.4, 1, refX, refY);
+            ctx.textAlign = 'end';
+            ctx.fillStyle = '#128afa';
+            ctx.fillText('Blue', 0, 0);
+
+            ctx.strokeStyle = 'blue';
+            ctx.strokeRect(
+                -metricsL.width, -metricsT.fontBoundingBoxAscent,
+                +metricsL.width, +metricsT.fontBoundingBoxAscent);
+
+            ctx.textAlign = 'start';
+            ctx.fillStyle = '#2b2b2b';
+            ctx.fillText('Archive', 0, 0);
+
+            ctx.strokeStyle = 'green';
+            ctx.strokeRect(0, -metricsT.fontBoundingBoxAscent,
+                +metricsR.width, +metricsT.fontBoundingBoxAscent);
+
+            ctx.setTransform(mod, 0, 0, mod,
+                refX - mod * 140,
+                refY - mod * 200 - metricsT.fontBoundingBoxAscent
+            );
+
+            ctx.fillStyle = 'blue';
+            ctx.fillRect(0, 0, 10 / mod, 10 / mod);
+
+            ctx.drawImage(halo, 0, 0);
+            ctx.drawImage(crux, 0, 0);
+
+            ctx.strokeStyle = 'red';
+            ctx.beginPath();
+            ctx.moveTo(284, 136, 5, 5);
+            ctx.lineTo(321, 153, 5, 5);
+            ctx.lineTo(159, 410, 5, 5);
+            ctx.lineTo(148, 403, 5, 5);
+            ctx.closePath();
+            ctx.stroke();
+
+            ctx.strokeRect(0, 0, 500, 500);
+            ctx.font = '20px monospace';
+            ctx.textAlign = 'end';
+            ctx.textBaseline = 'bottom';
+
+            ctx.fillStyle = 'green';
+            ctx.fillText('(140, 200)', 140, 200);
+            ctx.fillStyle = 'blue';
+            ctx.fillText('(0, 0)', 0, 0);
+
+            ctx.textAlign = 'start';
+            ctx.textBaseline = 'top';
+            ctx.fillText('(500, 500)', 500, 500);
+        });
+    </script>
+</body>
+
+</html>
