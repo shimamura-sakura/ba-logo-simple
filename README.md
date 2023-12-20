@@ -2,7 +2,9 @@
 
 A logo generator using canvas & REAL vanilla js.
 
-Used assets and magic numbers from [nulla2011/Bluearchive-logo](https://github.com/nulla2011/Bluearchive-logo)
+Used assets and magic numbers from [nulla2011](https://github.com/nulla2011/Bluearchive-logo)
+
+Took innovation for blur effect from [appleneko2001](https://github.com/appleneko2001/bluearchive-logo)
 
 Online on [shimamura-sakura.github.io](https://shimamura-sakura.github.io/ba-logo/)
 
